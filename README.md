@@ -165,6 +165,8 @@ This is more than magic.
 Sorcery! 🔮
 
 
+# The end!
 
+### Thanks for reading! I'm glad if you found it helpful.
 
 
