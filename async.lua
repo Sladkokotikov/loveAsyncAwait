@@ -3,15 +3,14 @@ local A = {}
 A.__index = A
 
 function fireAndForget(fn, ...)
-    local a = setmetatable({}, A)
+    local asyncState = setmetatable({}, A)
     local args = {...}
-    a.co = coroutine.create(
+    asyncState.co = coroutine.create(
         function()
-            fn(a, unpack(args))
+            fn(asyncState, unpack(args))
         end
     )
-    coroutine.resume(a.co)
-    return a
+    coroutine.resume(asyncState.co)
 end
 
 function A:wait(fn, ...)
