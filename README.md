@@ -108,6 +108,8 @@ end
 4. Next, we create a coroutine from a thunk...
 5. and cache it in async state!
 6. Finally, we resume the coroutine
+
+
 Magic! ✨
 
 If a function doesn't use `a:wait`, it is just called synchronously. Boring.
@@ -130,6 +132,8 @@ end -- 5
 Remember the core idea? Coroutine resumes itself at the right moment - in some seconds!
 4. And we yield. 
 5. When given amount of seconds has passed, coroutine will be resumed, and we will exit from function
+
+
 Magic! ✨
 
 
@@ -161,7 +165,10 @@ end
 What? _Just one line?_
 **Yes**. It just calls a function, passing all of the arguments and ensuring that the first argument is beautiful `asyncState`.
 
+
 This is more than magic. 
+
+
 Sorcery! 🔮
 
 
