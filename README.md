@@ -50,6 +50,10 @@ end
 fireAndForget(waitForClickAsync)
 ```
 
+# Restrictions
+
+To make method `async`, you need to add first argument called `a` 
+(in order to use beautiful `a:wait` syntax, of course)
 
 
 
