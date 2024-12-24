@@ -1,6 +1,6 @@
 # LÖVE2D async / await
 
-My naive implementation of async / await syntax with LÖVE2D and Lua with no dependencies, in just 33 lines of code, along with the thoughts and interesting things I discovered during the process.
+My naive implementation of async / await syntax with LÖVE2D and Lua with no dependencies, in just 32 lines of code, along with the thoughts and interesting things I discovered during the process.
 
 # Spoilers
 
