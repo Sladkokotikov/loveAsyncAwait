@@ -77,7 +77,7 @@ I fell in LÖVE with Lua, but I missed `async` keyword so much! I looked up and 
 
 
 # I hope you know how to use...
-[Lua coroutines]() and other languages `async/await` syntax.
+[Lua coroutines](https://www.lua.org/manual/5.1/manual.html#5.2) and other languages `async/await` syntax.
 
 # Core idea
 
