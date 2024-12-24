@@ -1,21 +1,20 @@
-# LÖVE2D async / await
+require "async"
 
-My implementation of async / await syntax with LÖVE2D and Lua with no dependencies, along with the thoughts and interesting things I discovered during the process.
+function love.update(dt)
+    tick(dt)
+end
 
-# Spoilers
+-- Example 1. Delaying something.
 
-### Fire and forget, Delay
-```lua
 function printMessageAsync(a, delay, message)
     a:waitSeconds(delay)
     print(message)
 end
 
 fireAndForget(printMessageAsync, 1, "My! My! Time Flies!") -- prints "My! My! Time Flies!" in one second
-```
 
-### Await other async operations and get results, create anonymous async functions
-```lua
+-- Example 2. Awaiting other functions, anonymous included
+
 function doubleNumberAsync(a, num)
     a:waitSeconds(0.2)
     return num * 2
@@ -30,14 +29,13 @@ end
 fireAndForget(function(a) 
     print(a:wait(multiplyByFourAsync, 4)) 
 end)
-```
 
-### Awaiting completion source with result
-```lua
+-- Example 3. Completion source.
+
 function waitForClickAsync(a)
     completionSource = a
-    local x, y, button = a:waitSource()
-    print("Clicked!")
+    local button, x, y = a:waitSource()
+    print(button, x, y)
     completionSource = nil
 end
 
@@ -48,8 +46,3 @@ function love.mousepressed(x, y, button)
 end
 
 fireAndForget(waitForClickAsync)
-```
-
-
-
-
