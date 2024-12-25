@@ -137,7 +137,7 @@ Remember the core idea? Coroutine resumes itself at the right moment - in some s
 Magic! ✨
 
 
-In simple words, coroutines allow to stop execution and then go back to the stoping point, _nice of them_, so we will use exactly that.
+In simple words, coroutines allow to stop execution and then go back to the stopping point, _nice of them_, so we will use exactly that.
 
 Next in line, `a:waitSource`. This allows us to resume the asynchronous function from another function, for example, on click.
 
