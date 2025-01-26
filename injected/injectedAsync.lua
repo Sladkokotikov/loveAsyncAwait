@@ -7,11 +7,9 @@ function injectUpvalue(fn, upvalueName, upvalue)
 end
 function fireAndForget(fn)
     local cor = coroutine.create(fn)
-    --print("new cor:", cor)
     local await
     
     await = function(innerFn, ...)
-        --print(await)
         injectUpvalue(innerFn, "await", await)
         injectUpvalue(innerFn, "__thread", cor)
         return innerFn(...)

@@ -1,21 +1,31 @@
 local TaskCompletionSource = require "taskCompletionSource"
 local loveTask = {}
-local await
+
 require "runInParallel"
 
-loveTask.all = async(function(...)
+loveTask.all = function(...)
     local args = { ... }
-    local left = {#args}
-    local res = {}
-    local tcs = TaskCompletionSource:new()
+    local await, __thread
 
-    for i, v in ipairs(args) do
-        runInParallel(i,v,res, left, tcs)
+    return function()
+        print(".all await fn:", await)
+        local left = #args
+        local res = {}
+        local tcs = TaskCompletionSource:new()
+        for i, v in ipairs(args) do
+            fireAndForget(function() 
+                res[i] = await(v)
+                left = left - 1
+                if left == 0 then
+                    tcs:complete()
+                end
+            end)
+        end
+        await(tcs:task(__thread))
+        print("returning from all")
+        return unpack(res)
     end
-
-    await(tcs:task())
-    return unpack(res)
-end)
+end
 
 loveTask.any = async(function(...)
     local args = { ... }

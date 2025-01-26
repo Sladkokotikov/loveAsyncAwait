@@ -5,15 +5,18 @@ local TaskCompletionSource = createType(function(self)
     self.complete = self.err
 end)
 
-local __thread
 
-function TaskCompletionSource:taskAsync()
-    self.complete = function(_self, ...)
-        assert(coroutine.resume(__thread, ...))
+
+function TaskCompletionSource:task(thread)
+    local __thread
+    return function()
+        self.complete = function(_self, ...)
+            assert(coroutine.resume(thread or __thread, ...))
+        end
+        local res = {coroutine.yield()}
+        self.complete = self.err
+        return unpack(res)
     end
-    local res = {coroutine.yield()}
-    self.complete = self.err
-    return unpack(res)
 end
 
 return TaskCompletionSource
